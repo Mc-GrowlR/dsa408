@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 namespace List
 {
     namespace StaticSqList
@@ -10,22 +11,47 @@ namespace List
             int length, MaxSize; //当前长度
             T *data;             //数据区
         };
+        //显示列表
+        void Display(const SqList<int> &L)
+        {
+            using std::cout;
+            for ( int i = 0;i <L.length;i++ )
+            {
+                cout<<"i :"<<L.data[i]<<" ";
+            }
+        }
 
+
+        // 列表初始化
         template <typename T>
-        bool InitList(SqList<T> &L, T e)
+        bool InitList(SqList<T> &L, int e)
         {
             L.data = new T[e];
             L.MaxSize = e;
             L.length = 0;
             return true;
         }
-
+        // 列表初始化
+        template <typename T>
+        bool InitList(SqList<T> &L, T* a,int n)
+        {
+            InitList(L,n);
+            for ( int i=0;i<n;i++ )
+            {
+                L.data[i]=a[i];
+                L.length++;
+            }
+            return true;
+        }
+        // 取得列表长度
         template <typename T>
         int Length(SqList<T> &L)
         {
+
             return L.length;
         }
 
+        //将列表中的值同一赋予e
         template <typename T>
         int LocateElem(SqList<T> &L, T e)
         {
